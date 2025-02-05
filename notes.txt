@@ -1,0 +1,56 @@
+
+-- UMA-8-SP USB mic array
+    * https://www.minidsp.com/products/usb-audio-interface/uma-8-sp-detail
+
+-- MATLAB integration
+    * https://www.minidsp.com/applications/usb-mic-array/uma-8-16-matlab
+
+-- Using Raspberry Pi
+    * https://www.minidsp.com/applications/usb-mic-array/uma-8-rpi-diy-amazon-echo
+
+-- Download Windows driver from
+	* https://www.minidsp.com/userdownloads/usb-mic-array-series/uma-8-drivers
+
+-- After installing the driver microphone will be shown as "miniDSP micArray XVSM"
+
+-- Need to configure UMA-8-SP for 7 channel configuration 
+	* Burn the raw channel firmware
+		-- Connect both USB and power cable to miniDSP
+		-- Run miniDSP UAC2 DFU Tool
+		-- Browse to the firmware: UMA8SP\exec\micArray_VF_v1.4\micArray_vf_raw_v1.3_up.bin (for raw channel outputs)
+		-- Start burning, once it shows "Successful", Exit the DFU tool
+
+	* Verify the device can collect 8 channel measurements now
+		-- Open miniDSP UAC2 Control Panel
+		-- Under Format tab, the input should show 8 channels, 24 bits
+
+-- Ensure that "Speakers (miniDSP mic-Array Multi-channels)" and "miniDSP micArray Multi-channels" are selected and unmuted
+
+
+-- TODO
+
+	* Add birdsound at the beginning to ensure speaker-microphone works before proceeding -- DONE
+
+	* prepare a README
+
+	* figure out the location of microphone 0, 1, 2, in the audioData array and update figure: Best guess, audioData(:, 1) is Mic0, and so -- DONE
+
+	* identify the dB of the speaker and update README
+
+	* implement FMCW recovery technique on the received signal
+
+	* implement breathing and HR detection technique on the recovered signal
+
+	create README for better code readability
+
+	integrate smartwatch with FMCW breathing
+	Add README for data collection 
+
+-- Simultenous speaker-microphone operations requires parallel computing toolbox
+	* Install the parallel computing toolbox from Add-Ons --> Get Add-Ons
+	* Validate paralllel pool in MATLAB
+	* Open Cluster Profile Manager
+	* Select 'Processes (default)'
+	* Press Validate and ensure it passes all checks
+
+-- Debug, why correlation output is showing negative values in the lab -- 
